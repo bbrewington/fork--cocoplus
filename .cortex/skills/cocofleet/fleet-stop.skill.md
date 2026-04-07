@@ -1,0 +1,51 @@
+---
+name: "fleet-stop"
+description: "Terminate all running processes in a CocoFleet run. Sends SIGTERM, waits 10 seconds, then SIGKILL. Updates state file. Usage: /fleet stop [fleet-id]."
+version: "1.0.0"
+author: "CocoPlus"
+tags:
+  - cocoplus
+  - cocofleet
+---
+
+Your objective is to stop a running CocoFleet.
+
+Before proceeding, verify that `.cocoplus/` exists.
+If not: output "CocoPlus is not initialized. Run `/pod init` first." Then stop.
+
+Parse argument: `/fleet stop [fleet-id]`
+If no fleet-id: output "Usage: /fleet stop [fleet-id]" Then stop.
+
+Read `.cocoplus/fleet/[fleet-id]-state.json`. If not found: output "Fleet state not found for [fleet-id]." Then stop.
+
+## Terminate Running Instances
+
+For each instance with status == "running":
+1. Read PID from state.json
+2. Send SIGTERM: `kill -TERM [pid] 2>/dev/null || true`
+3. Wait up to 10 seconds for graceful shutdown:
+   ```bash
+   for i in $(seq 1 10); do
+     kill -0 [pid] 2>/dev/null || break
+     sleep 1
+   done
+   ```
+4. Send SIGKILL if still running: `kill -KILL [pid] 2>/dev/null || true`
+5. Update state.json: status = "stopped", completed_at = [timestamp]
+
+## Write Stop Record
+
+Write `.cocoplus/fleet/[fleet-id]-stop-record.md`:
+```markdown
+# Fleet Stop Record
+
+**Fleet ID:** [fleet-id]
+**Stopped At:** [ISO 8601 timestamp]
+
+## Instances Stopped
+| Instance | Last Status | Last Checkpoint | PID |
+|----------|-------------|-----------------|-----|
+[one row per stopped instance]
+```
+
+Output: "Fleet [fleet-id] stopped. [N] processes terminated. Stop record: `.cocoplus/fleet/[fleet-id]-stop-record.md`."

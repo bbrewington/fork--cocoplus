@@ -1,0 +1,79 @@
+---
+name: "cocoplus-on"
+description: "Activate Full Assist Mode — enables all CocoPlus features simultaneously: Memory Engine, Environment Inspector, Safety Gate (normal), Code Quality Advisor, Context Mode, and CocoMeter. Also triggers a background environment scan. Idempotent."
+version: "1.0.0"
+author: "CocoPlus"
+tags:
+  - cocoplus
+  - assist-mode
+---
+
+Your objective is to activate Full Assist Mode — enabling all CocoPlus features at once.
+
+Before proceeding, verify that `.cocoplus/` exists.
+If not: output "CocoPlus is not initialized. Run `/pod init` first." Then stop.
+
+## Create All Mode Flags
+
+Run these commands:
+```
+touch .cocoplus/modes/memory.on
+touch .cocoplus/modes/inspector.on
+touch .cocoplus/modes/quality.on
+touch .cocoplus/modes/context-mode.on
+touch .cocoplus/modes/cocometer.on
+touch .cocoplus/modes/full-assist.on
+```
+
+For safety mode: only create safety.normal if no safety flag already exists (preserve stricter settings):
+- Check if `.cocoplus/modes/safety.strict`, `.cocoplus/modes/safety.normal`, or `.cocoplus/modes/safety.off` exists
+- If none exist: `touch .cocoplus/modes/safety.normal`
+
+Initialize memory files if they don't exist:
+- `.cocoplus/memory/decisions.md` — create with header `# Decisions Log\n\n_Decisions captured by CocoPlus Memory Engine_\n` if missing
+- `.cocoplus/memory/patterns.md` — create with header `# Patterns Log\n\n_Patterns identified by CocoPlus Memory Engine_\n` if missing
+- `.cocoplus/memory/errors.md` — create with header `# Errors Log\n\n_Error lessons captured by CocoPlus Memory Engine_\n` if missing
+
+## Update AGENTS.md
+
+Update AGENTS.md (keep ≤200 lines).
+Replace the `## Active Modes` section with:
+```
+## Active Modes
+- FULL ASSIST MODE: ACTIVE
+- Safety: [current level — check which safety.* flag exists]
+- Memory: ON
+- Inspector: ON
+- Context Mode: ON
+- CocoMeter: ON
+- Code Quality: ON
+```
+
+## Trigger Background Inspector
+
+Trigger Environment Inspector as background subagent (non-blocking).
+Activate the `inspect` skill with `background: true` flag.
+
+## Create Git Commit
+
+```
+git add .cocoplus/modes/ .cocoplus/AGENTS.md .cocoplus/memory/
+git commit -m "chore(cocopod): activate full assist mode"
+```
+
+## Output Confirmation Table
+
+```
+✓ Full Assist Mode activated.
+
+| Feature | Status | Description |
+|---------|--------|-------------|
+| Memory Engine | ON | Decisions and patterns captured automatically |
+| Environment Inspector | ON | Background scan triggered; auto-scans on session start |
+| Safety Gate | [current level] | SQL destructive operation protection |
+| Code Quality Advisor | ON | SQL anti-pattern detection on file writes |
+| Context Mode | ON | Phase context prepended to every prompt |
+| CocoMeter | ON | Token and credit usage tracking |
+
+All flags created. Run `/cocoplus off` to deactivate all features at once.
+```
