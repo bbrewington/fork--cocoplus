@@ -1,17 +1,10 @@
 {
   "name": "cocoplus",
-  "version": "0.1.0",
-  "description": "CocoPlus — AI-powered development lifecycle for Snowflake Cortex Code",
-  "author": "Shankar Narayanan",
-  "entry_point": "plugin.cortex.entrypoint",
-  "coco_cli_version": ">=1.0.0",
-  "features": [
-    "lifecycle-engine",
-    "task-decomposition",
-    "personas",
-    "token-tracking",
-    "safety-gates"
-  ],
+  "version": "1.0.0",
+  "description": "CocoPlus — AI-powered development lifecycle plugin for Snowflake Cortex Code CLI",
+  "author": "CocoPlus",
+  "entry": ".cortex/",
+  "minCocoVersion": "1.0.0",
   "agents": [
     "cocobrew",
     "data-engineer",
@@ -25,8 +18,15 @@
     "coco-cupper",
     "secondeye-critic"
   ],
-  "pricing": {
-    "model": "usage-based",
-    "tokens_per_session_estimate": 100000
-  }
+  "hooks": [
+    "session-start",
+    "session-end",
+    "pre-tool-use",
+    "post-tool-use",
+    "user-prompt-submit",
+    "stop",
+    "subagent-stop",
+    "pre-compact",
+    "notification"
+  ]
 }
