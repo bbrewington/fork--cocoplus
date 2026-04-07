@@ -17,12 +17,12 @@ main() {
     return 0
   fi
 
-  append_json_line "$hook_log" "{\"hook\":\"pre-tool-use\",\"tool\":\"$(json_escape "$tool_name")\",\"ts\":\"${ts}\"}"
-
   if [[ "$tool_name" != "SnowflakeSqlExecute" ]]; then
     printf '{"action":"allow"}\n'
     return 0
   fi
+
+  append_json_line "$hook_log" "{\"hook\":\"pre-tool-use\",\"tool\":\"$(json_escape "$tool_name")\",\"ts\":\"${ts}\"}"
 
   local input payload sql_input sql_upper pattern="" safety_mode="normal"
   input="${COCO_TOOL_INPUT:-}"
@@ -54,7 +54,9 @@ main() {
     safety_mode="off"
   fi
 
-  append_json_line "$safety_log" "{\"ts\":\"${ts}\",\"tool\":\"$(json_escape "$tool_name")\",\"pattern\":\"$(json_escape "$pattern")\",\"mode\":\"${safety_mode}\"}"
+  if [[ "$safety_mode" != "off" ]]; then
+    append_json_line "$safety_log" "{\"ts\":\"${ts}\",\"tool\":\"$(json_escape "$tool_name")\",\"pattern\":\"$(json_escape "$pattern")\",\"mode\":\"${safety_mode}\"}"
+  fi
 
   case "$safety_mode" in
     strict)
