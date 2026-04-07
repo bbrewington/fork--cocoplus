@@ -1,16 +1,17 @@
 ---
 name: "data-steward"
 description: "Manages data governance, enforces data quality standards, defines data lineage, and ensures compliance with data policies. Invoke with $dst."
-model: "claude-sonnet-4-20250514"
-mode: "auto"
+model: "sonnet"
+mode: "plan"
 tools:
   - SnowflakeSqlExecute
+  - DataDiff
   - Read
   - Write
 background: false
 isolation: "none"
 context: "fork"
-temperature: 0.3
+temperature: 0.2
 ---
 
 The Data Steward manages data governance, enforces quality standards, defines data lineage, and ensures compliance with data policies.

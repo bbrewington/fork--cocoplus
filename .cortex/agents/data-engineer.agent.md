@@ -1,7 +1,7 @@
 ---
 name: "data-engineer"
 description: "Designs schemas, builds SQL pipelines, writes dbt models and stored procedures, and optimizes data transformations. Invoke with $de."
-model: "claude-sonnet-4-20250514"
+model: "sonnet"
 mode: "auto"
 tools:
   - SnowflakeSqlExecute

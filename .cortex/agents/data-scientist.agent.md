@@ -1,7 +1,7 @@
 ---
 name: "data-scientist"
 description: "Develops ML models, engineers features, works with Snowpark notebooks and Cortex ML functions, and conducts statistical analysis. Invoke with $ds."
-model: "claude-sonnet-4-20250514"
+model: "sonnet"
 mode: "auto"
 tools:
   - NotebookExecute

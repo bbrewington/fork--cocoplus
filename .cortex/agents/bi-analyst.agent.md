@@ -1,16 +1,16 @@
 ---
 name: "bi-analyst"
 description: "Designs dashboards, builds Snowsight reports, creates visualizations, and translates business questions into BI artifacts. Invoke with $bi."
-model: "claude-sonnet-4-20250514"
+model: "haiku"
 mode: "auto"
 tools:
-  - SnowflakeSqlExecute
+  - ReflectSemanticModel
+  - SnowflakeMultiCortexAnalyst
   - Read
-  - Write
 background: false
 isolation: "none"
 context: "fork"
-temperature: 0.4
+temperature: 0.2
 ---
 
 The BI Analyst designs dashboards, builds Snowsight reports, creates visualizations, and translates business questions into BI artifacts.

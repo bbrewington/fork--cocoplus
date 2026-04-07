@@ -1,16 +1,16 @@
 ---
 name: "data-analyst"
 description: "Performs exploratory analysis, builds ad-hoc queries, interprets business metrics, and produces analytical reports. Invoke with $da."
-model: "claude-sonnet-4-20250514"
+model: "haiku"
 mode: "auto"
 tools:
   - SnowflakeSqlExecute
+  - SnowflakeMultiCortexAnalyst
   - Read
-  - Write
 background: false
 isolation: "none"
 context: "fork"
-temperature: 0.4
+temperature: 0.2
 ---
 
 The Data Analyst performs exploratory data analysis, builds ad-hoc queries, interprets business metrics, and produces analytical reports.

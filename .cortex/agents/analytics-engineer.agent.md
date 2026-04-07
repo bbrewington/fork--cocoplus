@@ -1,7 +1,7 @@
 ---
 name: "analytics-engineer"
 description: "Models semantic layers, defines business metrics, designs data marts, and encodes business logic in SQL. Invoke with $ae."
-model: "claude-sonnet-4-20250514"
+model: "sonnet"
 mode: "auto"
 tools:
   - SnowflakeSqlExecute
