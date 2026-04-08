@@ -1,5 +1,5 @@
 ---
-name: "cocospark"
+name: "spark"
 description: "Activate CocoSpark brainstorm mode. Generates multiple divergent approaches, challenges assumptions, and explores what-if scenarios. Output is marked as exploration and does NOT modify spec or lifecycle artifacts. Use /spark to start, /spark-off to end."
 version: "1.0.0"
 author: "CocoPlus"
