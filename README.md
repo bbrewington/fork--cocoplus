@@ -38,15 +38,13 @@ See [docs/index.html](docs/index.html) for the full documentation site.
 
 | Document | Description |
 |----------|-------------|
-| [Architecture](Snow-Cocoplus/docs/architecture.md) | System design and component overview |
-| [Features](Snow-Cocoplus/docs/features.md) | Full feature reference |
-| [Concepts](Snow-Cocoplus/docs/concepts.md) | Core ideas and mental models |
-| [Design Principles](Snow-Cocoplus/instructions/DESIGN_PRINCIPLES.md) | Guiding philosophy |
-| [Commands Spec](Snow-Cocoplus/instructions/COMMANDS_SPEC.md) | All `/commands` reference |
-| [Hooks Spec](Snow-Cocoplus/instructions/HOOKS_SPEC.md) | Hook event protocol |
-| [Personas](Snow-Cocoplus/instructions/PERSONAS.md) | Specialist agent definitions |
-| [Directory Structure](Snow-Cocoplus/instructions/DIRECTORY_STRUCTURE.md) | Profile vs project folder layout |
-| [CocoFlow Spec](Snow-Cocoplus/instructions/COCOFLOW_SPEC.md) | Pipeline language reference |
+| [Overview](docs/index.html) | Documentation home |
+| [Architecture](docs/architecture.html) | System design and component overview |
+| [Features](docs/features.html) | Full feature reference |
+| [Concepts](docs/concepts.html) | Core ideas and mental models |
+| [Design Principles](docs/principles.html) | Guiding philosophy |
+| [Data Context](docs/data-context.html) | Snowflake data context integration |
+| [Manifesto](docs/manifesto.html) | Vision and motivation |
 
 ---
 
